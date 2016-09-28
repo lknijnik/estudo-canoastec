@@ -1,7 +1,8 @@
 <?php
 
-use App\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Faker\Factory as Faker;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -12,8 +13,8 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-    	Product::truncate();
-    	
-        $faker = Faker::create();
+    	DB::table('Products')->truncate();
+
+        factory('App\Products', 10)->create();
     }
 }
