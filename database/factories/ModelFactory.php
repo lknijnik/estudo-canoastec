@@ -38,3 +38,14 @@ $factory->define(App\Products::class, function (Faker\Generator $faker) {
 		'status' => 1
 	];
 });
+
+$factory->define(App\Reviews::class, function (Faker\Generator $faker) {
+	//$product_ids = \DB::table('Products')->select('id')->get();
+
+	return [
+		'product_id' => App\Products::all()->random()->id,//$faker->randomElement($product_ids)->id,
+		'title' => substr($faker->sentence, 0, -1),
+		'text' => $faker->paragraphs(3, true),
+		'stars' => $faker->regexify('[1-5]')
+	];
+});
