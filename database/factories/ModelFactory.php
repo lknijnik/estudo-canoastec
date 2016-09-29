@@ -22,7 +22,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Products::class, function (Faker\Generator $faker) {
+$factory->define(App\Product::class, function (Faker\Generator $faker)
+{
 	return [
 		'name' => substr($faker->sentence, 0, -1),
 		'short_description' => $faker->paragraph,
@@ -39,11 +40,10 @@ $factory->define(App\Products::class, function (Faker\Generator $faker) {
 	];
 });
 
-$factory->define(App\Reviews::class, function (Faker\Generator $faker) {
-	//$product_ids = \DB::table('Products')->select('id')->get();
-
+$factory->define(App\Review::class, function (Faker\Generator $faker)
+{
 	return [
-		'product_id' => App\Products::all()->random()->id,//$faker->randomElement($product_ids)->id,
+		'product_id' => App\Product::all()->random()->id,
 		'title' => substr($faker->sentence, 0, -1),
 		'text' => $faker->paragraphs(3, true),
 		'stars' => $faker->regexify('[1-5]')
