@@ -49,3 +49,26 @@ $factory->define(App\Review::class, function (Faker\Generator $faker)
 		'stars' => $faker->regexify('[1-5]')
 	];
 });
+
+$factory->define(App\Category::class, function (Faker\Generator $faker)
+{
+	return [
+		'name' => $faker->word
+	];
+});
+
+$factory->define(App\Subcategory::class, function (Faker\Generator $faker)
+{
+	return [
+		'name' => $faker->word,
+		'category_id' => App\Category::all()->random()->id
+	];
+});
+
+$factory->define(App\Brand::class, function (Faker\Generator $faker)
+{
+	return [
+		'name' => $faker->word
+	];
+});
+

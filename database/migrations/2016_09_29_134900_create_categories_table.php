@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
 
             $table->increments('id');
             $table->string('name', 255);
-            $table->string('url', 255);
+            $table->string('url', 255)->nullable();
             $table->timestamps();
         });
 
@@ -31,7 +31,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name', 255);
-            $table->string('url', 255);
+            $table->string('url', 255)->nullable();
             $table->timestamps();
         });
 
