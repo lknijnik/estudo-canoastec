@@ -72,3 +72,32 @@ $factory->define(App\Brand::class, function (Faker\Generator $faker)
 	];
 });
 
+$factory->define(App\AttributeType::class, function (Faker\Generator $faker)
+{
+	return [
+		'name' => $faker->word,
+		'is_grouping' => 0
+	];
+});
+
+$factory->define(App\Attribute::class, function (Faker\Generator $faker)
+{
+	$identifyer_type = $faker->randomElement($arr = ['none', 'color', 'image', 'text', 'colorname']);
+
+	switch($identifyer_type)
+	{
+		case "none" : $identifyer = ""; break;
+		case "color" :
+		case "colorname" : $identifyer = $faker->hexcolor; break;
+		case "image" : $identifyer = $faker->image('upload', 100, 100); break;
+		case "text" : $identifyer = $faker->word; break;
+	}
+
+	return [
+		'name' => $faker->word,
+		'attribute_type_id' => App\AttributeType::all()->random()->id,
+		'identifyer_type' => $identifyer_type,
+		'identifyer' => $identifyer
+	];
+});
+
