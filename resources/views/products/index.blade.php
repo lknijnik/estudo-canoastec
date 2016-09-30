@@ -1,11 +1,40 @@
-<!doctype html>
-<html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<title>Produtos</title>
-	
-</head>
-<body>
+@extends ('template')
+
+@section('content')
 	<h1>Produtos</h1>
-</body>
-</html>
+
+	@foreach ($products as $p)
+	
+	<h2>{{ $p->name }}</h2>
+	<p>{!! nl2br($p->description) !!}</p>
+
+	<blockquote>
+		<h3>Avaliações</h3>
+
+		@forelse ($p->reviews as $r)
+
+		<h4>{{ $r->title }}</h4><br />
+
+		@for($i = 1; $i <=5; $i++)
+
+			@if ($i <= $r->stars)
+			<i class="glyphicon glyphicon-star"></i>
+			@else
+			<i class="glyphicon glyphicon-star-empty"></i>
+			@endif
+
+		@endfor
+
+		<br />
+		{!! nl2br($r->text) !!}
+		<hr />
+
+		@empty
+
+		<h4>Nenhuma avaliação encontrada!</h4>
+
+		@endforelse
+
+	</blockquote>
+	@endforeach
+@endsection

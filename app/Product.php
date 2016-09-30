@@ -38,13 +38,19 @@ class Product extends Model
 
    public function categories()
    {
-   		return $this->belongsToMany('App\Category', 'products_categories')
+   		return $this->belongsToMany('App\Category', 'products_categories');
 
    }
 
    public function subcategories()
    {
    		return $this->belongsToMany('App\Subcategory', 'products_categories');
+
+   }
+
+   public function attributes()
+   {
+   		return $this->belongsToMany('App\Attribute', 'products_attributes');
 
    }
 }
