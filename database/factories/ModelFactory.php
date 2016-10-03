@@ -101,3 +101,35 @@ $factory->define(App\Attribute::class, function (Faker\Generator $faker)
 	];
 });
 
+$factory->define(App\Customer::class, function (Faker\Generator $faker)
+{
+	$apelido = $faker->firstName;
+	$nome = $apelido . ' ' . $faker->lastName;
+
+	return [
+		'name' => $nome,
+		'nickname' => $apelido,
+		'cpf' => $faker->cpf,
+		'rg' => $faker->rg,
+		'password' => md5('123'),
+		'birth_date' => $faker->date,
+		'phone' => $faker->phoneNumber,
+		'mobile' => $faker->cellPhoneNumber
+	];
+});
+
+$factory->define(App\CustomerAddress::class, function (Faker\Generator $faker)
+{
+	return [
+		'customer_id' => App\Customer::all()->random()->id,
+		'address_type' => ucfirst($faker->word),
+		'address' => $faker->streetName,
+		'number' => $faker->buildingNumber,
+		'complement' => $faker->secondaryAddress,
+		'district' => $faker->cityPrefix,
+		'cep' => $faker->postcode,
+		'state' => $faker->stateAbbr,
+		'city' => $faker->city,
+		'reference' => $faker->secondaryAddress
+	];
+});
