@@ -4,7 +4,7 @@
 	<h1>Produtos</h1>
 
 	@foreach ($products as $p)
-	
+
 	<h2>{{ $p->name }}</h2>
 	<p>{!! nl2br($p->description) !!}</p>
 
@@ -26,7 +26,7 @@
 		@endfor
 
 		<br />
-		{!! nl2br($r->text) !!}
+		<p>{!! nl2br($r->text) !!}</p>
 		<hr />
 
 		@empty

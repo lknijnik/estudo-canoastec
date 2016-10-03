@@ -18,4 +18,9 @@ class Review extends Model
 	{
 		return $this->belongsTo('App\Product');
 	}
+
+	public function customer()
+	{
+		return $this->belongsTo('App\Customer');
+	}
 }

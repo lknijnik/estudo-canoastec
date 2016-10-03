@@ -10,7 +10,7 @@ class AttributeType extends Model
 
     public function attributes()
     {
-    	return $this->belongsTo('App\Attribute');
+    	return $this->hasMany('App\Attribute');
     }
 
 }
