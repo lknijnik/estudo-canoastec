@@ -53,4 +53,11 @@ class ProductsController extends Controller
 
         return redirect()->route('admin.products.index');
     }
+
+    public function delete($id)
+    {
+        $this->product->find($id)->delete();
+
+        return redirect()->route('admin.products.index');
+    }
 }

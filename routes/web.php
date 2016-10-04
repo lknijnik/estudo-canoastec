@@ -26,3 +26,4 @@ Route::get('admin/products/create', ['as' => 'admin.products.create', 'uses' => 
 Route::get('admin/products/edit/{id}', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);
 Route::post('admin/products/store', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
 Route::put('admin/products/update/{id}', ['as' => 'admin.products.update', 'uses' => 'Admin\ProductsController@update']);
+Route::get('admin/products/delete/{id}', ['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@delete']);
