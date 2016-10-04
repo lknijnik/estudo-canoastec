@@ -9,21 +9,22 @@ class Product extends Model
 	protected $table = 'products';
 
     protected $fillable = [
-    	'title',
+      'name',
     	'short_description',
-		'sku',
-		'stock',
-		'minimum_stock',
-		'price',
-		'weight',
-		'width',
-		'length',
-		'height',
-		'description'
-    ];
-
-    protected $guarded = [
-    	'status'
+  		'sku',
+      'grouping_sku',
+      'isbn',
+  		'stock',
+  		'minimum_stock',
+  		'price',
+      'discount_price',
+      'discount_percentage',
+  		'weight',
+  		'width',
+  		'length',
+  		'height',
+  		'description',
+      'status',
     ];
 
     public function reviews()

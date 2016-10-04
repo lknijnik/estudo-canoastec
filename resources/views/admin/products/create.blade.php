@@ -115,6 +115,8 @@
 		</div>
 	</div>
 
+	{!! Form::hidden('status', 1) !!}
+	
 	<div class="form-group">
 		{!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
 	</div>

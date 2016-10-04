@@ -34,6 +34,7 @@ class ProductsController extends Controller
 
     public function store(Request $req)
     {
+        //dd($req->all());
         $this->product->create($req->all());
 
         return redirect()->route('admin.products.index');
