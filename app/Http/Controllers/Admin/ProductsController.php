@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\ProductRequest;
 use App\Http\Controllers\Controller;
 
 use App\Product;
@@ -32,10 +33,23 @@ class ProductsController extends Controller
     	return view('admin.products.create');
     }
 
-    public function store(Request $req)
+    public function edit($id)
     {
-        //dd($req->all());
+        $product = $this->product->find($id);
+
+        return view('admin.products.edit', compact('product'));
+    }
+
+    public function store(ProductRequest $req)
+    {
         $this->product->create($req->all());
+
+        return redirect()->route('admin.products.index');
+    }
+
+    public function update($id, ProductRequest $req)
+    {
+        $product = $this->product->find($id)->update($req->all());
 
         return redirect()->route('admin.products.index');
     }

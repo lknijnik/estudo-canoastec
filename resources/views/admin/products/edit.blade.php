@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1>Admin Criar Novo Produto</h1>
+	<h1>Admin Editar Produto</h1>
 
 	@if ($errors->any())
 
@@ -13,12 +13,13 @@
 		</ul>
 	@endif
 
-	{!! Form::open(['route' => 'admin.products.store', 'method' => 'post']) !!}
+	{!! Form::model($product, ['route' => ['admin.products.update', $product->id], 'method' => 'put']) !!}
 	
+
 	@include('admin.products.form')
 
 	<div class="form-group">
-		{!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
+		{!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 	</div>
 
 	{!! Form::close() !!}
