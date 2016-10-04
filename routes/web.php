@@ -21,5 +21,6 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('produtos', 'ProductsController@index');
 
-Route::get('admin', 'Admin\ProductsController@index');
-Route::get('admin/create', 'Admin\ProductsController@create');
+Route::get('admin/products', ['as' => 'admin.products.index', 'uses' => 'Admin\ProductsController@index']);
+Route::get('admin/products/create', ['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
+Route::post('admin/products/store', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);

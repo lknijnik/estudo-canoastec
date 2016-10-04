@@ -31,4 +31,11 @@ class ProductsController extends Controller
     {
     	return view('admin.products.create');
     }
+
+    public function store(Request $req)
+    {
+        $this->product->create($req->all());
+
+        return redirect()->route('admin.products.index');
+    }
 }
