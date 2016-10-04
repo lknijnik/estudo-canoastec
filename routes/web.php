@@ -21,9 +21,17 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('produtos', 'ProductsController@index');
 
-Route::get('admin/products', ['as' => 'admin.products.index', 'uses' => 'Admin\ProductsController@index']);
-Route::get('admin/products/create', ['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
-Route::get('admin/products/edit/{id}', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);
-Route::post('admin/products/store', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
-Route::put('admin/products/update/{id}', ['as' => 'admin.products.update', 'uses' => 'Admin\ProductsController@update']);
-Route::get('admin/products/delete/{id}', ['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@delete']);
+Route::group(['prefix' => 'admin'], function() {
+
+	Route::group(['prefix' => 'products'], function() {
+
+		Route::get('', 				['as' => 'admin.products.index', 'uses' => 'Admin\ProductsController@index']);
+		Route::get('create', 		['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
+		Route::get('edit/{id}', 	['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);
+		Route::post('store', 		['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
+		Route::put('update/{id}', 	['as' => 'admin.products.update', 'uses' => 'Admin\ProductsController@update']);
+		Route::get('delete/{id}', 	['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@delete']);
+
+	});
+
+});
