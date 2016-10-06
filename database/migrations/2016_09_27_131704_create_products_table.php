@@ -39,7 +39,22 @@ class CreateProductsTable extends Migration
             $table->date('available_date')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('related_products', function (Blueprint $table) {
+
+            $table->engine = 'InnoDB';
+
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+
+            $table->integer('related_product_id')->unsigned();
+            $table->foreign('related_product_id')->references('id')->on('products')->onDelete('cascade');
+
+            $table->primary(['product_id', 'related_product_id'], 'pk_related_products');
+
+        });
     }
+
 
     /**
      * Reverse the migrations.
@@ -48,6 +63,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('related_products');
         Schema::dropIfExists('products');
     }
 }

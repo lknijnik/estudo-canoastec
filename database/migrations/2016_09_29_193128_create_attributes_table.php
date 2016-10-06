@@ -38,15 +38,15 @@ class CreateAttributesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('products_attributes', function (Blueprint $table) {
+        Schema::create('products_to_attributes', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
 
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->integer('attribute_id')->unsigned();
-            $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
 
             $table->primary(['product_id', 'attribute_id'], 'pk_product_attributes');
         });
@@ -59,7 +59,7 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_attributes');
+        Schema::dropIfExists('products_to_attributes');
         Schema::dropIfExists('attributes');
         Schema::dropIfExists('attribute_types');
     }

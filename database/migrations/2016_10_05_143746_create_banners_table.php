@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewsTable extends Migration
+class CreateBannersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->integer('product_id')->unsigned();
+            $table->text('name', 255);
+            $table->text('url', 255)->nullable();
+            $table->text('image', 255);
+            $table->integer('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('title', 255);
-            $table->text('text');
-            $table->tinyInteger('stars');
-            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('banners');
     }
 }

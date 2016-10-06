@@ -15,6 +15,6 @@ class ProductsTableSeeder extends Seeder
     {
     	DB::table('Products')->truncate();
 
-        factory('App\Products', 10)->create();
+        factory('App\Product', 30)->create();
     }
 }

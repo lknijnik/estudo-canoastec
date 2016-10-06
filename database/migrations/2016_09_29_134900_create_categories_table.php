@@ -36,18 +36,18 @@ class CreateCategoriesTable extends Migration
         });
 
 
-        Schema::create('products_categories', function (Blueprint $table) {
+        Schema::create('products_to_categories', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
 
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
             $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->integer('subcategory_id')->unsigned();
-            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
 
             $table->primary(['product_id', 'category_id', 'subcategory_id'], 'pk_product_subcategories');
         });
@@ -60,7 +60,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_categories');
+        Schema::dropIfExists('products_to_categories');
         Schema::dropIfExists('subcategories');
         Schema::dropIfExists('categories');
     }

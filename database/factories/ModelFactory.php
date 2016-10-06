@@ -31,6 +31,8 @@ $factory->define(App\Product::class, function (Faker\Generator $faker)
 		'stock' => $faker->randomDigit,
 		'minimum_stock' => 0,
 		'price' => $faker->randomFloat(2, 10, 500),
+		'discount_price' => 0.00,
+		'discount_percentage' => 0.00,
 		'weight' => $faker->randomFloat(2, 1, 25),
 		'width' => $faker->randomFloat(2, 1, 25),
 		'length' => $faker->randomFloat(2, 1, 25),
@@ -46,7 +48,8 @@ $factory->define(App\Review::class, function (Faker\Generator $faker)
 		'product_id' => App\Product::all()->random()->id,
 		'title' => substr($faker->sentence, 0, -1),
 		'text' => $faker->paragraphs(3, true),
-		'stars' => $faker->regexify('[1-5]')
+		'stars' => $faker->regexify('[1-5]'),
+		'status' => $faker->boolean(70)
 	];
 });
 
@@ -111,7 +114,7 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker)
 		'nickname' => $apelido,
 		'cpf' => $faker->cpf,
 		'rg' => $faker->rg,
-		'password' => md5('123'),
+		'password' => bcrypt('123'),
 		'birth_date' => $faker->date,
 		'phone' => $faker->phoneNumber,
 		'mobile' => $faker->cellPhoneNumber

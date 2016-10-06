@@ -23,8 +23,6 @@ class ProductsController extends Controller
     {
     	$products = $this->product->paginate(5);
 
-    	//dd($products);
-
     	return view('admin.products.index', compact('products'));
     }
 
