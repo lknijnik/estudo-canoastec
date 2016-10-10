@@ -52,9 +52,9 @@ class Product extends Model
    		return $this->belongsToMany('App\Attribute', 'products_to_attributes');
     }
 
-    public function attributes()
+    public function storefronts()
     {
-        return $this->belongsToMany('App\Attribute', 'products_to_attributes');
+        return $this->belongsToMany('App\Storefront', 'products_to_storefronts');
     }
 
     public function relatedProducts()

@@ -17,9 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', 'HomeController@index');
+
 Route::get('/home', 'HomeController@index');
 
-Route::get('/auth', function() {
+/*Route::get('/auth', function() {
    
 	if (Auth::attempt(['name' => 'leonel', 'password' => 123]))
 	{
@@ -32,11 +34,16 @@ Route::get('/auth', function() {
 
 Route::get('/auth/logout', function() {
 	Auth::logout();
-});
+});*/
+
+Auth::routes();
 
 Route::get('produtos', 'ProductsController@index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+
+	Route::get('', 			['as' => 'admin.index.index', 'uses' => 'Admin\IndexController@index']);
+	Route::get('dashboard', ['as' => 'admin.index.index', 'uses' => 'Admin\IndexController@index']);
 
 	Route::group(['prefix' => 'products'], function() {
 
@@ -50,3 +57,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	});
 
 });
+
+Route::get('/home', 'HomeController@index');
