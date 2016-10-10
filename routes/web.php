@@ -39,6 +39,7 @@ Route::get('/auth/logout', function() {
 Auth::routes();
 
 Route::get('produtos', 'ProductsController@index');
+Route::get('produtos/{parameter}', 'ProductsController@detail');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 

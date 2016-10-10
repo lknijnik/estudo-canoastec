@@ -24,9 +24,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Product::class, function (Faker\Generator $faker)
 {
+	$name = substr($faker->sentence, 0, -1);
+	$url = strtolower(str_replace(' ', '-', $name));
+
 	return [
-		'name' => substr($faker->sentence, 0, -1),
+		'name' => $name,
 		'short_description' => $faker->paragraph,
+		'url' => $url,
 		'sku' => $faker->randomNumber(6),
 		'stock' => $faker->randomDigit,
 		'minimum_stock' => 0,
@@ -134,5 +138,20 @@ $factory->define(App\CustomerAddress::class, function (Faker\Generator $faker)
 		'state' => $faker->stateAbbr,
 		'city' => $faker->city,
 		'reference' => $faker->secondaryAddress
+	];
+});
+
+$factory->define(App\ProductImages::class, function (Faker\Generator $faker)
+{
+	$product_id => App\Product::all()->random()->id;
+	$order = App\Product::find($product_id)->images->count() + 1;
+	$main = $order == 1 ? 1 : 0;
+
+	return [
+		'product_id' => $product_id,
+		'title' => substr($faker->sentence, 0, -1),
+		'image' => $faker->image('upload', 800, 600),
+		'order' => $order,
+		'main' => $main
 	];
 });

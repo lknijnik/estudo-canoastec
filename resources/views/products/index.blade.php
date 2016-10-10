@@ -4,8 +4,8 @@
 	<h1>Produtos</h1>
 
 	@foreach ($products as $p)
+	<a href="produtos/{{ $p->url or $p->id }}"><h2>{{ $p->name }}</h2></a>
 
-	<h2>{{ $p->name }}</h2>
 	<p>{!! nl2br($p->description) !!}</p>
 
 	<blockquote>

@@ -27,6 +27,7 @@ class Product extends Model
         'status',
     ];
 
+
     public function reviews()
     {
     	return $this->hasMany('App\Review');
@@ -60,5 +61,10 @@ class Product extends Model
     public function relatedProducts()
     {
         return $this->belongsToMany('App\Product', 'related_products');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\PrductImages');
     }
 }
